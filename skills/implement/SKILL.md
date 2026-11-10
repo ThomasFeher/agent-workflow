@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Phase 2 - execution protocol. Run in a fresh session after planning: read .agents/plan.md, run developer/reviewer subagent cycles per item (max 5), update plan state, ask the user when blocked.
+description: "Phase 2 - execution protocol. Run in a fresh session after planning: read .agents/plan.md, run developer/reviewer subagent cycles per item (max 5), update plan state, ask the user when blocked."
 disable-model-invocation: true
 ---
 

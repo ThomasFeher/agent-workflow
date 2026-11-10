@@ -1,6 +1,6 @@
 ---
 name: planner
-description: OpenCode Phase-1 primary (/plan runs with this agent). Planning brain session: gathers only via scout subagents, talks to the user directly, may write only .agents/plan.md. Protocol comes from the plan skill.
+description: "OpenCode Phase-1 primary (/plan runs with this agent). Planning brain session: gathers only via scout subagents, talks to the user directly, may write only .agents/plan.md. Protocol comes from the plan skill."
 mode: primary
 permissions:
   - action: edit

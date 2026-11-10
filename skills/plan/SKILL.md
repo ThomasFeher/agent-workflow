@@ -1,6 +1,6 @@
 ---
 name: plan
-description: "Phase 1 - planning protocol. Run at the start of a fresh session to plan a change: act as the planner, gather ONLY through scout subagents, ask the user about undefensible decisions, write/update .agents/plan.md. Not for trivial one-line edits."
+description: "Phase 1 - planning protocol. Run at the start of a fresh session to plan a change: act as the planner, gather ONLY through scout subagents, ask the user about decisions you cannot defend, write/update .agents/plan.md. Not for trivial one-line edits."
 disable-model-invocation: true
 ---
 
