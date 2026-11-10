@@ -29,7 +29,7 @@ State lives in the plan file **`.agents/plan.md`** (project root): plan table wi
 - OpenCode: `~/.config/opencode/agents/` = real dir with symlinked agent files; commands symlinked from `<repo>/opencode-commands/`; skills read natively from `~/.agents/skills`.
 
 ## Frontmatter compatibility
-Superset format: Pi reads `name`, `description`, `model` and ignores the rest; OpenCode reads `description`, `mode`, `model`, `permissions` and ignores unknown keys (`name`, `skills`). Do NOT add a `tools:` key — OpenCode V2 treats it as a deprecated V1 map and silently skips the agent when it's a string. Pi ignores `permissions:` (stock extension) — Pi enforcement is prompt-level only; OpenCode enforces natively. `model:` omitted -> inherit session model; provider names differ (`localai/*` vs `llama.cpp/*`), pin models only in per-harness copies.
+Superset format: Pi reads `name`, `description`, `model` and ignores the rest; OpenCode reads `description`, `mode`, `model`, `permissions` and ignores unknown keys (`name`, `skills`). Do NOT add a `tools:` key — OpenCode V2 treats it as a deprecated V1 map and silently skips the agent when it's a string. Pi ignores `permissions:` (stock extension) — Pi enforcement is prompt-level only; OpenCode enforces natively. `model:` omitted -> inherit session model; provider names differ between harnesses, so pin models only in per-harness copies.
 
 Role enforcement (single source of truth = `permissions:` frontmatter, enforced by OpenCode; Pi = prompt-level via skills):
 - **planner** (OpenCode primary only): all gather+shell denied; edit denied except `.agents/plan.md`; only `scout` subagent + `plan` skill allowed.
