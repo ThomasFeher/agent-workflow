@@ -33,6 +33,8 @@ Phases stay decoupled: Phase 1 produces only the plan, Phase 2 produces only the
 ## Wiring (done automatically by ./install.sh)
 - Pi: `~/.pi/agent/agents -> <repo>/agents`; **stock** subagent extension symlinked from pi's installed examples (`$(npm root)/pi/packages/coding-agent/examples/extensions/subagent/`); prompt templates from `<repo>/pi-prompts/`.
 - OpenCode: `~/.config/opencode/agents/` = real dir with symlinked agent files; commands symlinked from `<repo>/opencode-commands/`; skills read natively from `~/.agents/skills`.
+- Skills: each `<repo>/skills/<name>/` is symlinked into `~/.agents/skills/<name>` (per-directory links, so an existing `~/.agents` holding other skills is fine). Both harnesses follow symlinked skill directories.
+- Both skills set `disable-model-invocation: true`, so they are NOT advertised in the system prompt and the model will never auto-load them: the entry points are the `/plan` and `/implement` prompt templates (Pi) / commands (OpenCode); `/skill:plan <task>` also works directly in Pi.
 
 ## Frontmatter compatibility
 Superset format: Pi reads `name`, `description`, `model` and ignores the rest; OpenCode reads `description`, `mode`, `model`, `permissions` and ignores unknown keys (`name`, `skills`). Do NOT add a `tools:` key — OpenCode V2 treats it as a deprecated V1 map and silently skips the agent when it's a string. Pi ignores `permissions:` (stock extension) — Pi enforcement is prompt-level only; OpenCode enforces natively. `model:` omitted -> inherit session model; provider names differ between harnesses, so pin models only in per-harness copies.

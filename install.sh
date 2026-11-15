@@ -13,10 +13,15 @@ for f in "$ROOT/agents"/*.md; do ln -sf "$f" ~/.config/opencode/agents/; done
 ln -sfn "$ROOT/agents" ~/.pi/agent/agents
 
 # --- skills ---
-# Both Pi and OpenCode scan ~/.agents/skills natively.
-# If this repo is not ~/.agents, expose it (only if ~/.agents doesn't already exist).
-if [ "$ROOT" != "$HOME/.agents" ] && [ ! -e "$HOME/.agents" ]; then
-  ln -sfn "$ROOT" ~/.agents
+# Both Pi and OpenCode scan ~/.agents/skills natively (they follow symlinked
+# directories), so link each skill directory individually. This works whether or
+# not ~/.agents already exists as a real directory (e.g. holding other skills).
+if [ "$ROOT" != "$HOME/.agents" ]; then
+  mkdir -p ~/.agents/skills
+  for d in "$ROOT"/skills/*/; do
+    [ -f "$d/SKILL.md" ] || continue
+    ln -sfn "${d%/}" ~/.agents/skills/
+  done
 fi
 
 # --- Pi: stock subagent extension (from pi's installed examples) ---
